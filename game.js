@@ -39,7 +39,7 @@ function Particle() {
 		
 		if (this.shape == null) {
 			this.shape = new createjs.Shape();
-			this.shape.graphics.beginRadialGradientFill([this.startColor.str(), this.endColor.str()], [0, 0.8], this.radius*2, this.radius*2, 0, this.radius*2, this.radius*2, this.radius);
+			this.shape.graphics.beginRadialGradientFill([this.startColor.str(), this.endColor.str()], [0, 1], this.radius*2, this.radius*2, 0, this.radius*2, this.radius*2, this.radius);
 			this.shape.graphics.drawCircle(this.radius*2, this.radius*2, this.radius);
 			
 			stage.addChild(this.shape);
@@ -120,15 +120,15 @@ $(document).ready(function() {
 	ps.positionOffsetY = { min: -3, max: 3 };
 	ps.velocityY = { min: -2, max: 2 };
 	ps.velocityX = { min: -2, max: 2 };
-	ps.radius = { min: 10, max: 15 };
+	ps.radius = { min: 7, max: 12 };
 	ps.count = 500;
 	ps.startColor = {
-		min: new RGBA(200,80,0,255),
-		max: new RGBA(255,160,0,255)
+		min: new RGBA(230,50,0,255),
+		max: new RGBA(255,255,0,255)
 	};
 	
 	ps.endColor = {
-		min: new RGBA(220,0,0,0),
+		min: new RGBA(255,0,0,0),
 		max: new RGBA(255,0,0,0)
 	};
 	
