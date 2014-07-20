@@ -120,8 +120,17 @@ $(document).ready(function() {
 	ps.positionOffsetY = { min: -3, max: 3 };
 	ps.velocityY = { min: -2, max: 2 };
 	ps.velocityX = { min: -2, max: 2 };
-	ps.radius = { min: 3, max: 5 };
+	ps.radius = { min: 10, max: 15 };
 	ps.count = 500;
+	ps.startColor = {
+		min: new RGBA(200,80,0,255),
+		max: new RGBA(255,160,0,255)
+	};
+	
+	ps.endColor = {
+		min: new RGBA(220,0,0,0),
+		max: new RGBA(255,0,0,0)
+	};
 	
 	createjs.Ticker.setFPS(30);
 	createjs.Ticker.addEventListener("tick", function() {
