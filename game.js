@@ -31,7 +31,7 @@ function Particle() {
 	this.shape = null;
 	
 	this.isDead = function() {
-		return this.lifetime < 1;
+		return this.lifetime < 1 || (this.shape != null && this.shape.scale >= 0);
 	};
 	
 	this.update = function(stage) {
@@ -42,12 +42,23 @@ function Particle() {
 			this.shape.graphics.beginRadialGradientFill([this.startColor.str(), this.endColor.str()], [0, 1], this.radius*2, this.radius*2, 0, this.radius*2, this.radius*2, this.radius);
 			this.shape.graphics.drawCircle(this.radius*2, this.radius*2, this.radius);
 			
+			createjs.Tween.get(this.shape)
+         		.wait(this.lifetime*.7)
+         		.to({ alpha: 0.5, useTicks: true }, this.lifetime);
+
+			createjs.Tween.get(this.shape)
+         		.wait(this.lifetime*.5)
+         		.to({ scaleX: 0, useTicks: true }, this.lifetime);
+
+			createjs.Tween.get(this.shape)
+         		.wait(this.lifetime*.5)
+         		.to({ scaleY: 0, useTicks: true }, this.lifetime);
+			
 			stage.addChild(this.shape);
 		}
 		
 		this.shape.x = this.position.x;
 		this.shape.y = this.position.y;
-		// update properties
 		
 		this.position.x += this.velocity.x;
 		this.position.y += this.velocity.y;
@@ -114,7 +125,7 @@ $(document).ready(function() {
 	var stage = new createjs.Stage(canvas);
 	
 	var ps = new ParticleSystem();
-	ps.lifetime = { min: 50, max: 150 };
+	ps.lifetime = { min: 350, max: 600 };
 	ps.position = { x: center.x, y: 50 };
 	ps.positionOffsetX = { min: -3, max: 3 };
 	ps.positionOffsetY = { min: -3, max: 3 };
@@ -124,7 +135,7 @@ $(document).ready(function() {
 	ps.count = 500;
 	ps.startColor = {
 		min: new RGBA(230,50,0,255),
-		max: new RGBA(255,255,0,255)
+		max: new RGBA(255,230,0,255)
 	};
 	
 	ps.endColor = {
